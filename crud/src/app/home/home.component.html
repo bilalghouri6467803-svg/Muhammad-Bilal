@@ -1,0 +1,68 @@
+<form class="form-control  " [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()"> 
+<div class="col-md-12 form">
+    <div class="col-md-6">
+<label for=""><h2>name</h2></label>
+<input name="name" type="text" class="form-control" name="name" formControlName="name"  id=""  placeholder="name" #name>
+    </div>
+    <div class="col-md-6">
+<label for=""><h2>Email</h2></label>
+<input autocomplete="off" type="text" class="form-control ng-pristine ng-invalid ng-touched" name="Email" formControlName="Email" id=""  placeholder="Email"  #email >
+<small class="text-danger"
+*ngIf="!myReactiveForm.get('Email')?.valid && myReactiveForm.get('Email')?.touched">
+  Please Enter the valid Email
+</small>
+    </div>
+   
+</div>
+<div class="col-md-12 form">
+    <div class="col-md-6">
+<label for=""><h2>Enter Mobile</h2></label>
+<input type="text" class="form-control" name="mobile" formControlName="Mobile"  id=""  placeholder="Enter Mobile"  #mobile>
+<small class="text-danger"
+*ngIf="!myReactiveForm.get('Mobile')?.valid && myReactiveForm.get('Mobile')?.touched">
+  Please Enter the valid Mobile Phone no
+</small>
+    </div>
+    <div class="col-md-6">
+<label for=""><h2>Enter Age</h2></label>
+<input type="text" class="form-control" name="age" formControlName="Age" id=""  placeholder="Enter Age"  #age>
+    </div>
+</div>
+<div  class="col-md-12 form">
+    <div class="col-md-6">
+<button class="btn btn-success" type="submit"  (click)="add( name,email,mobile,age)">{{editMode?'UpdateProduct':'Add Product'}}</button>
+<button class="btn btn-success" type="save" style="margin-left: 10px;" (click)="onsave()">Save</button>
+    </div>
+    <div class="col-md-6">
+<button class="btn btn-danger" type="reset" >Clear</button>
+    </div>
+</div>
+</form>
+<!-- table ma data display -->
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th>USER</th>
+      <th>EMAIL</th>
+      <th>MOBILE</th>
+      <th>AGE</th>
+      <th>ACTION</th>
+    </tr>
+  </thead>
+
+<tbody>
+  <tr *ngFor="let item of product; let i = index">
+    <td>{{item.name}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.mobile}}</td>
+    <td>{{item.age}}</td>
+
+    <td>
+      <span style="color: blue; cursor: pointer;font-size: large; " (click)="onadit(i)">Adit</span><i class="fa-solid fa-edit text-primary me-2" style="cursor:pointer"></i>
+       <span>Delete</span><i class="fa-solid fa-trash-can text-danger" style="cursor:pointer" (click)="ondelete(i)"></i>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+
